@@ -27,33 +27,34 @@ public class BeerInvntoryBootstrap implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if(beerInventoryRepository.count() == 0){
+
             loadInitialInv();
-        }
     }
 
     private void loadInitialInv() {
-        beerInventoryRepository.save(BeerInventory
-                .builder()
-                .beerId(BEER_1_UUID)
-                .upc(BEER_1_UPC)
-                .quantityOnHand(50)
-                .build());
+        if(beerInventoryRepository.count() == 0){
+            beerInventoryRepository.save(BeerInventory
+                    .builder()
+                    .beerId(BEER_1_UUID)
+                    .upc(BEER_1_UPC)
+                    .quantityOnHand(50)
+                    .build());
 
-        beerInventoryRepository.save(BeerInventory
-                .builder()
-                .beerId(BEER_2_UUID)
-                .upc(BEER_2_UPC)
-                .quantityOnHand(150)
-                .build());
+            beerInventoryRepository.save(BeerInventory
+                    .builder()
+                    .beerId(BEER_2_UUID)
+                    .upc(BEER_2_UPC)
+                    .quantityOnHand(150)
+                    .build());
 
-        beerInventoryRepository.saveAndFlush(BeerInventory
-                .builder()
-                .beerId(BEER_3_UUID)
-                .upc(BEER_3_UPC)
-                .quantityOnHand(250)
-                .build());
+            beerInventoryRepository.saveAndFlush(BeerInventory
+                    .builder()
+                    .beerId(BEER_3_UUID)
+                    .upc(BEER_3_UPC)
+                    .quantityOnHand(250)
+                    .build());
 
-        log.debug("Loaded Inventory. Record count: " + beerInventoryRepository.count());
+            log.debug("Loaded Inventory. Record count: " + beerInventoryRepository.count());
+        }
     }
 }
