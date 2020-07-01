@@ -5,9 +5,11 @@ spring:
     username: beer_inventory_user
     password: password
     platform: mysql
+    hikari:
+      maximum-pool-size: 5
   jpa:
     hibernate:
       ddl-auto: create-drop
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.MySQL5Dialect
     database: mysql
     show-sql: false
